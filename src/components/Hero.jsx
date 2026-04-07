@@ -1,27 +1,71 @@
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
-import { init } from 'ityped';
-import React, { useEffect, useRef } from "react";
-import { AiOutlineGithub } from "react-icons/ai";
-import { ImLinkedin } from "react-icons/im";
-import { AiOutlineInstagram } from "react-icons/ai";
-import { BiLinkAlt } from "react-icons/bi";
-import { mypic1, mypic2 } from "../assets";
+import React, { useEffect, useState } from "react";
+import { mypic1 } from "../assets";
 import "./Hero.scss";
 
-const Hero = () => {
+const toolStrings = [
+  "HTML 5",
+  "CSS 3",
+  "Tailwind CSS",
+  "JavaScript",
+  "React JS",
+  "Vite",
+  "Redux Toolkit",
+  "Node JS",
+  "postgresql",
+  "git",
+  "docker",
+  "Python",
+  "Flask",
+  "C++",
+  "Express",
+  "Next.js",
+  "SQLAlchemy",
+  "Embedded C",
+  "SQLite",
+  "Pytest",
+  "AWS",
+];
 
-  const textRef = useRef();
+const Hero = () => {
+  const [typedText, setTypedText] = useState("");
+  const [activeToolIndex, setActiveToolIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   useEffect(() => {
-    init(textRef.current, { showCursor: true, strings: ["HTML 5", "CSS 3", "Tailwind CSS", "JavaScript", "React JS", "Vite", "Redux Toolkit", "Node JS", "postgresql", "git", "docker", "Python", "Flask", "C++", "Express", "Next.js", "SQLAlchemy", "Embedded C", "SQLite", "Pytest", "AWS"], })
-  }, []);
+    const activeTool = toolStrings[activeToolIndex];
+    const typingSpeed = isDeleting ? 45 : 90;
+    let timeoutId;
+
+    if (!isDeleting && typedText === activeTool) {
+      timeoutId = window.setTimeout(() => {
+        setIsDeleting(true);
+      }, 1200);
+
+      return () => window.clearTimeout(timeoutId);
+    }
+
+    if (isDeleting && typedText === "") {
+      setIsDeleting(false);
+      setActiveToolIndex((currentIndex) => (currentIndex + 1) % toolStrings.length);
+      return undefined;
+    }
+
+    timeoutId = window.setTimeout(() => {
+      const nextLength = typedText.length + (isDeleting ? -1 : 1);
+      setTypedText(activeTool.slice(0, nextLength));
+    }, typingSpeed);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [activeToolIndex, isDeleting, typedText]);
 
   return (
-    <section className={`relative w-full h-screen mx-auto`}>
-      <div className="flex">
+    <section className={`relative mx-auto h-screen w-full overflow-hidden bg-primary`}>
+      <div className="relative z-20 flex">
         <div
-          className={`head1 absolute  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+          className={`head1 absolute max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 z-20`}
         >
           <div className='flex flex-col justify-center items-center mt-5'>
             <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
@@ -30,29 +74,25 @@ const Hero = () => {
 
 
           <div className="head2">
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi! I&apos;m <span className="text-[#915EFF]">Anas Alakkad</span>
-          </h1>
-          <p className={`${styles.heroSubText} text-white-100`}>
-            I am a Software Engineering well versed in
-            <br className="sm:block hidden" /> {" "}
-            <span key="unique-key"
-            // className="text-[#007bff] font-bold"
-            ref={textRef}
-            style={{
-              background: 'linear-gradient(45deg, #8e2de2, #4a00e0)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              color: 'transparent',
-              fontWeight: 'bold',
-            }}
-            >
-            {" "}
-            </span>
-          </p>
-            <h3>
-              {/* <span ref={textRef} className={`${styles.heroSubText} mt-2 green-text-gradient`}></span> */}
-            </h3>
+            <h1 className={`${styles.heroHeadText} text-white`}>
+              Hi! I&apos;m <span className="text-[#915EFF]">Anas Alakkad</span>
+            </h1>
+            <p className={`${styles.heroSubText} text-white-100`}>
+              I am a Software Engineering well versed in
+              <br className="sm:block hidden" /> {" "}
+              <span
+                style={{
+                  background: 'linear-gradient(45deg, #8e2de2, #4a00e0)',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  color: 'transparent',
+                  fontWeight: 'bold',
+                }}
+              >
+                {typedText}
+              </span>
+              <span className='ityped-cursor'>|</span>
+            </p>
 
             {/* <div className="absolute link1">
               <a
@@ -68,15 +108,16 @@ const Hero = () => {
 
           </div>
         </div>
-        <div className="imgcontainer1 absolute violet-gradient">
+        <div className="imgcontainer1 absolute z-20 violet-gradient">
           <img src={mypic1} alt="" className="object-contain" />
         </div>
       </div>
 
+      <div className="relative z-0 h-screen w-full">
+        <ComputersCanvas />
+      </div>
 
-      <ComputersCanvas />
-
-      <div className='absolute xs:bottom-10 bottom-32 w-10 flex justify-end items-center'>
+      <div className='absolute xs:bottom-28 bottom-28 z-20 w-full flex justify-center items-center'>
         <a href='#education'>
           <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
             <motion.div

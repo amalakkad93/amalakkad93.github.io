@@ -1,12 +1,12 @@
 {
   "name": "react-portfolio",
-  "homepage": "https://amalakkad93.github.io/amalakkad93.github.io",
+  "homepage": "https://amalakkad93.github.io/Anas-Alakkad-portfolio/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "react-scripts start",
+    "start": "vite",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "vite build",

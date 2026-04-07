@@ -10,11 +10,10 @@ const App = () => {
         <div className='relative z-0 bg-primary'>
           <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
             <Navbar />
-            <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center mt-20'></div>
             <Hero />
           </div>
-          <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center mt-20'>
-          <About />
+          <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
+            <About />
           </div>
           <Content />
           <Education />
@@ -27,7 +26,7 @@ const App = () => {
             <StarsCanvas />
           </div>
           <Footer />
-          <div style={{ height: '50px' }}></div> 
+          <div style={{ height: '50px' }}></div>
         </div>
       </BrowserRouter>
     </div>

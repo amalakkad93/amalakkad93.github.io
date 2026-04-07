@@ -14,8 +14,8 @@ export default defineConfig({
 
   plugins: [react()],
   build: {
-    // outDir: 'build',
-    outDir: 'dist',
+    outDir: 'build',
+    emptyOutDir: true,
     chunkSizeWarningLimit: 100000000,
   },
 });

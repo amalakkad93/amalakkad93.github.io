@@ -38,23 +38,36 @@ const Ball = (props) => {
 };
 
 const BallCanvas = ({ icon }) => {
-  return (
-    <Canvas
-      frameloop='demand'
-      dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
-    >
-      <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-        />
-        <Ball imgUrl={icon} />
-      </Suspense>
+  const [isHovered, setIsHovered] = React.useState(false);
 
-      <Preload all />
-    </Canvas>
+  return (
+    <div
+      className='w-full h-full cursor-pointer'
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {isHovered ? (
+        <Canvas
+          dpr={[1, 2]}
+          gl={{ preserveDrawingBuffer: true, alpha: true, powerPreference: "high-performance" }}
+        >
+          <Suspense fallback={<CanvasLoader />}>
+            <OrbitControls
+              enableZoom={false}
+              maxPolarAngle={Math.PI / 2}
+              minPolarAngle={Math.PI / 2}
+            />
+            <Ball imgUrl={icon} />
+          </Suspense>
+
+          <Preload all />
+        </Canvas>
+      ) : (
+        <div className='w-full h-full flex justify-center items-center bg-[#fff8eb] rounded-full shadow-card border-b-4 border-r-4 border-gray-300'>
+          <img src={icon} alt="tech" className='w-1/2 h-1/2 object-contain' />
+        </div>
+      )}
+    </div>
   );
 };
 
