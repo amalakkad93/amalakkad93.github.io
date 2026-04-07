@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="480" viewBox="0 0 1600 480" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Anas Alakkad portfolio logo</title>
+  <desc id="desc">Transparent SVG logo with a modern AA monogram and wordmark using a blue to violet gradient suited for a dark navy website background.</desc>
+
+  <defs>
+    <linearGradient id="monoGrad" x1="40" y1="40" x2="360" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#56C8FF"/>
+      <stop offset="52%" stop-color="#7C8DFF"/>
+      <stop offset="100%" stop-color="#A56BFF"/>
+    </linearGradient>
+
+    <linearGradient id="textGrad" x1="430" y1="112" x2="1180" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E6F1FF"/>
+      <stop offset="55%" stop-color="#C5D3FF"/>
+      <stop offset="100%" stop-color="#8DA1FF"/>
+    </linearGradient>
+
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 180) rotate(90) scale(170 170)">
+      <stop offset="0%" stop-color="#4C82FF" stop-opacity="0.28"/>
+      <stop offset="55%" stop-color="#5C4CFF" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#5C4CFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0
+                                                   0 1 0 0 0
+                                                   0 0 1 0 0
+                                                   0 0 0 0.7 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- subtle atmospheric glow that remains transparent outside the logo -->
+  <circle cx="210" cy="180" r="170" fill="url(#halo)"/>
+
+  <!-- AA monogram -->
+  <g transform="translate(30 30)">
+    <g filter="url(#softGlow)" stroke="url(#monoGrad)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M70 300L160 50L250 300"/>
+      <path d="M115 188H205"/>
+      <path d="M190 300L280 50L370 300"/>
+      <path d="M235 188H325"/>
+    </g>
+
+    <!-- center accent cut / connector -->
+    <path d="M205 300L280 92L355 300" opacity="0.18" stroke="url(#monoGrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- wordmark -->
+  <g transform="translate(430 0)">
+    <text x="0" y="215"
+      font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif"
+      font-size="116"
+      font-weight="700"
+      letter-spacing="3"
+      fill="url(#textGrad)">Anas</text>
+
+    <text x="0" y="332"
+      font-family="Inter, Segoe UI, Helvetica Neue, Arial, sans-serif"
+      font-size="116"
+      font-weight="700"
+      letter-spacing="3"
+      fill="url(#textGrad)">Alakkad</text>
+
+    <rect x="2" y="242" width="520" height="4" rx="2" fill="url(#monoGrad)" opacity="0.9"/>
+
+   
+  </g>
+</svg>

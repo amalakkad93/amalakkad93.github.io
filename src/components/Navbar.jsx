@@ -39,7 +39,7 @@ const Navbar = () => {
           <img
             src={logotext}
             alt="logo"
-            className="sm:w-[90px] sm:h-[90px] w-[85px] h-[85px] -ml-[0.6rem] object-contain"
+            className="sm:w-[200px] sm:h-[60px] w-[150px] h-[45px] -ml-[0.1rem] object-contain"
           />
           {/* <p className="text-white text-[18px] font-bold flex">
             Anas&nbsp;<span className="hidden sm:block">Alakkad</span>
